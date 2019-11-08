@@ -7,6 +7,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.tapio.googlemaps.GoogleMap;
+import com.vaadin.tapio.googlemaps.client.LatLon;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -24,19 +25,27 @@ public class MapView extends AbsoluteLayout implements View {
         googleMap.setSizeFull();
         googleMap.setMinZoom(4);
         googleMap.setMaxZoom(16);
+        googleMap.setCenter(new LatLon(35.849778, -86.362778));
+        googleMap.setZoom(70);
         //     layout.setSizeFull();
         //   layout.setContent(googleMap);
         addComponent(googleMap);
 
+        HorizontalLayout titleBarColor = new HorizontalLayout();
+        titleBarColor.setWidth("100%");
+        titleBarColor.setHeight("10%");
+        //    titleBar.setMargin(new MarginInfo(true, true, false, true));
+        addComponent(titleBarColor);
+
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("150");
+        titleBar.setHeight("10%");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 
 
-        Label logo = new Label("<h2>MTConnect</h2>");
-        logo.setContentMode(ContentMode.HTML);
+        Label logo = new Label("MTConnect");
+      //  logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
         titleBar.setExpandRatio(logo, 1.0f);
 
@@ -52,12 +61,6 @@ public class MapView extends AbsoluteLayout implements View {
         titleBar.addComponent(navbar);
         titleBar.setExpandRatio(navbar, 1.0f);
 
-        Button login = new Button("Login");
-        login.addClickListener(e -> {
-            navigator.navigateTo("MapView");
-        });
-        login.setSizeUndefined();
-        titleBar.addComponent(login);
 
 
     }

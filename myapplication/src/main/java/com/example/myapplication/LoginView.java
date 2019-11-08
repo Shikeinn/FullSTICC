@@ -39,6 +39,7 @@ public class LoginView extends VerticalLayout implements View {
             User user = null;
             try {
                 user = Functions.pullUserData(name, pw, dbConnection);
+                System.out.println(user);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

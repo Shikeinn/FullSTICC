@@ -15218,3 +15218,26 @@ div.v-layout.v-horizontal.v-widget {
 	width: 19px;
 	overflow: hidden;
 }
+
+.mytheme div.v-horizontallayout.v-layout.v-horizontal.v-widget.v-has-width.v-has-height.v-margin-top.v-margin-right.v-margin-left {
+	background: blue;
+	opacity: 50%;
+}
+
+.mytheme div.v-horizontallayout.v-layout.v-horizontal.v-widget.v-has-width.v-has-height.v-margin-top.v-margin-right.v-margin-left .v-label {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: white;
+	opacity: 100%;
+}
+
+.mytheme div.v-horizontallayout.v-layout.v-horizontal.v-widget.v-has-width.v-has-height.v-margin-top.v-margin-right.v-margin-left .v-slot-borderless {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: white;
+	opacity: 100%;
+}
+
+.mytheme .v-widget {
+	opacity: 100%;
+}
