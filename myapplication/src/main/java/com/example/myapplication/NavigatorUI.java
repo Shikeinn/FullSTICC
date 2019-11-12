@@ -33,6 +33,8 @@ public class NavigatorUI extends UI {
         navigator.addView(MAINVIEW, new HomeView(navigator));
         navigator.addView("MapView", new MapView(navigator));
         navigator.addView("SignUp", new SignUpView(navigator));
+        navigator.addView("CreateEventView", new CreateEventView(navigator));
+
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

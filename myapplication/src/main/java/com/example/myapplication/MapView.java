@@ -1,8 +1,10 @@
+
 package com.example.myapplication;
 
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.MarginInfo;
@@ -14,7 +16,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import static com.example.myapplication.NavigatorUI.MAINVIEW;
 
 public class MapView extends AbsoluteLayout implements View {
-    private final String apiKey = "AIzaSyDv0zoPcZ8BT_7PC1v_-gN6xyiAS0FTVhw";
+    private final String apiKey = "AIzaSyDLbnNNje--nCQs4VVJQHpA-FnxCmXrfcI";
     public MapView(Navigator navigator){
         setSizeFull();
 
@@ -33,19 +35,19 @@ public class MapView extends AbsoluteLayout implements View {
 
         HorizontalLayout titleBarColor = new HorizontalLayout();
         titleBarColor.setWidth("100%");
-        titleBarColor.setHeight("10%");
+        titleBarColor.setHeight("150");
         //    titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBarColor);
 
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("10%");
+        titleBar.setHeight("150");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 
 
         Label logo = new Label("MTConnect");
-      //  logo.setContentMode(ContentMode.HTML);
+        //  logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
         titleBar.setExpandRatio(logo, 1.0f);
 
@@ -58,9 +60,22 @@ public class MapView extends AbsoluteLayout implements View {
         homeBtn.addClickListener(e -> {
             navigator.navigateTo(MAINVIEW);
         });
+
+
+        // Define a common menu command for all the menu items.
+        MenuBar.Command createEvent = new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                navigator.navigateTo("CreateEventView");
+            }
+        };
+
         titleBar.addComponent(navbar);
         titleBar.setExpandRatio(navbar, 1.0f);
-
+        MenuBar profileMenu = new MenuBar();
+        profileMenu.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+        titleBar.addComponent(profileMenu);
+        MenuBar.MenuItem profile = profileMenu.addItem("Profile", null, null);
+        profile.addItem("Create an Event", null, createEvent);
 
 
     }
