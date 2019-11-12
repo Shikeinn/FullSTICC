@@ -78,10 +78,10 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
+		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND PW ='"+password+ "'");
 		results.next();
 		
-		if( (results.getString("m_number") == mNumber) && (results.getString("pw") == password))
+		if( (results.getString("m_number") == mNumber) && (results.getString("PW") == password))
 		{	
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
