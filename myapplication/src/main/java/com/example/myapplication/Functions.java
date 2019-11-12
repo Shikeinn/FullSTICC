@@ -80,7 +80,7 @@ public class Functions {
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
 		results.next();
-		System.out.println("Egg-142");
+		System.out.printf("%f, %f", mNumber, password);
 		if( (results.getString("m_number") == mNumber) && (results.getString("pw") == password))
 		{	System.out.println("Egg0");
 			DataClasses.User pulledUser = new DataClasses.User(
