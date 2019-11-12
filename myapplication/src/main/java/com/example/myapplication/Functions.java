@@ -83,14 +83,13 @@ public class Functions {
 		
 		System.out.printf("%s, %s, \n", mNumber, password);
 		System.out.printf("%s, %s, \n", results.getString("m_number"), results.getString("pw"));
-		System.out.printf("%b, %b, \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
 		
 		String m_test = results.getString("m_number");
 		String pass_test = results.getString("pw");
 		
-		System.out.printf("%b, %b \n", (mNumber == mNumber), (password == password));
+		System.out.printf("%b, %b \n", (m_test.equals(mNumber) ), (pass_test.equals(password) ) );
 		
-		if( (mNumber == mNumber) && (password == password) )
+		if( (m_test.equals(mNumber)) && (pass_test.equals(password)) )
 		{	System.out.println("Egg0");
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
