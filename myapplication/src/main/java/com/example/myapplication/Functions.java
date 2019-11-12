@@ -80,9 +80,9 @@ public class Functions {
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
 		results.next();
-		System.out.printf("%s, %s \n", mNumber, password);
-		System.out.printf("%s, %s \n", results.getString("m_number"), results.getString("pw"));
-		System.out.printf("%b, %b \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
+		System.out.printf("%s, %s, \n", mNumber, password);
+		System.out.printf("%s, %s, \n", results.getString("m_number"), results.getString("pw"));
+		System.out.printf("%b, %b, \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
 		
 		String m_test = results.getString("m_number");
 		String pass_test = results.getString("pw");
