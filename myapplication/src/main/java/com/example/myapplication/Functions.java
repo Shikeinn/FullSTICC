@@ -89,7 +89,7 @@ public class Functions {
 		
 		System.out.printf("%b, %b \n", (m_test.equals(mNumber) ), (pass_test.equals(password) ) );
 		
-		if( (m_test.equals(mNumber)) && (pass_test.equals(password)) )
+		if( (m_test.equals(mNumber) ) && (pass_test.equals(password) ) )
 		{	System.out.println("Egg0");
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
@@ -123,7 +123,7 @@ public class Functions {
 	
 		ResultSet results = st.executeQuery("SELECT * FROM event_m WHERE event_name ="+event_name+" AND date_of_event="+eventDate);
 		results.next();
-		if( (results.getString("event_name") == event_name) && (results.getString("date_of_event") == eventDate))
+		if( (event_name.equalsIgnoreCase(results.getString("event_name"))) && (eventDate.equalsIgnoreCase(results.getString("date_of_event")) ) )
 		{	
 			DataClasses.Event pulledEvent = new DataClasses.Event(
 				results.getString("event_name"),
