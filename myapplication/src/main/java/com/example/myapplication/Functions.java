@@ -80,6 +80,7 @@ public class Functions {
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
 		results.next();
+		
 		System.out.printf("%s, %s, \n", mNumber, password);
 		System.out.printf("%s, %s, \n", results.getString("m_number"), results.getString("pw"));
 		System.out.printf("%b, %b, \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
@@ -87,9 +88,9 @@ public class Functions {
 		String m_test = results.getString("m_number");
 		String pass_test = results.getString("pw");
 		
-		System.out.printf("%b, %b \n", (m_test == mNumber), (pass_test == password));
+		System.out.printf("%b, %b \n", (mNumber == mNumber), (password == password));
 		
-		if( (m_test == mNumber) && (pass_test == password) )
+		if( (mNumber == mNumber) && (password == password) )
 		{	System.out.println("Egg0");
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
