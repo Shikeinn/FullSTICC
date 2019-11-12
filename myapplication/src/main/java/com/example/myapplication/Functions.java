@@ -78,7 +78,7 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ="+mNumber+" AND pw ="+password);
+		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
 		results.next();
 		
 		if( (results.getString("m_number") == mNumber) && (results.getString("pw") == password))
