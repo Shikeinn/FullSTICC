@@ -82,7 +82,7 @@ public class Functions {
 		results.next();
 		System.out.printf("%s, %s \n", mNumber, password);
 		System.out.printf("%s, %s \n", results.getString("m_number"), results.getString("pw"));
-		System.out.printf("%d, %d \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
+		System.out.printf("%b, %b \n", (results.getString("m_number") == mNumber), (results.getString("pw") == password));
 		
 		if( (results.getString("m_number") == mNumber) && (results.getString("pw") == password) )
 		{	System.out.println("Egg0");
