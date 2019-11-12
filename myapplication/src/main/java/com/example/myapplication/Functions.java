@@ -18,9 +18,27 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		st.executeUpdate("INSERT INTO user_m(name_f, m_number, email, pw, major, interest_1, interest_2, interest_3, club_sk_1, club_sk_2, club_sk_3, club_sk_4, club_sk_5, club_sk_6, club_sk_7)"+"VALUE"
-				+ "							 ('"+x.name_f+"','"+x.m_number+"','"+x.email+"','"+x.pw+"','"+x.major+"','"+x.interest_1+"','"+x.interest_2+"','"+x.interest_3+"','"+x.club_sk_1+"','"+x.club_sk_2+"','"+x.club_sk_3+"','"+x.club_sk_4+"','"+x.club_sk_5+"','"+x.club_sk_6+"','"+x.club_sk_7+"')");
+		String query = "{create_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
+		stmt.setString(1, x.name_f);
+		stmt.setString(2, x.m_number);
+		stmt.setString(3, x.email);
+		stmt.setString(4, x.pw);
+		stmt.setString(5, x.major);
+		stmt.setString(6, x.major);
+		stmt.setString(7, x.interest_1);
+		stmt.setString(8, x.interest_2);
+		stmt.setString(9, x.interest_3);
+		stmt.setString(10, x.club_sk_1);
+		stmt.setString(11, x.club_sk_2);
+		stmt.setString(12, x.club_sk_3);
+		stmt.setString(13, x.club_sk_4);
+		stmt.setString(14, x.club_sk_5);
+		stmt.setString(15, x.club_sk_6);
+		stmt.setString(16, x.club_sk_7);
+		
+		stmt.executeUpdate();
 	}
 	
 	//push an Event to the database, given Event object and Connection
@@ -29,8 +47,17 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		st.executeUpdate("INSERT INTO event_m(event_name,club_name, interest_name, date_of_event, duration, location_name, event_desc)" + "VALUE"
-				+ "		 ('"+x.event_name+"','"+x.club_name+"','"+x.interest_name+"','"+x.date_of_event+"','"+x.duration+"','"+x.location_name+"','"+x.event_desc+"' )");
+		String query = "{create_event(?, ?, ?, ?, ?, ?, ?)}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+		stmt.setString(1, x.event_name);
+		stmt.setString(2, x.club_name);
+		stmt.setString(3, x.interest_name);
+		stmt.setDate(4, (java.sql.Date) x.date_of_event);
+		stmt.setString(5, x.duration);
+		stmt.setString(6, x.location_name);
+		stmt.setString(7, x.event_desc);
+		
+		stmt.executeUpdate();
 		
 	}
 	
@@ -46,15 +73,15 @@ public class Functions {
 	
 	
 	//returns a User record if username and email match the input
-	public static DataClasses.User pullUserData(String username, String password, Connection dbConnection) throws SQLException {
+	public static DataClasses.User pullUserData(String m_number, String password, Connection dbConnection) throws SQLException {
 		
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE name_f ="+username+" AND pw="+password);
+		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ="+m_number+" AND pw="+password);
 		results.next();
 		
-		if( (results.getString("name_f") == username) && (results.getString("pw") == password))
+		if( (results.getString("m_number") == m_number) && (results.getString("pw") == password))
 		{	
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
@@ -277,7 +304,7 @@ public class Functions {
 	public static ArrayList<DataClasses.Event> pullDaysEvents(String location, Connection dbConnection) throws SQLException {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String query = "{Call pull_100_events(?)";
+		String query = "{Call pull_10_events(?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		stmt.setInt(location, 1);
 
@@ -308,8 +335,7 @@ public class Functions {
 		return eventArrayList; //returns the event
 		
 	}
-	
-	
+
 	
 	
 	
