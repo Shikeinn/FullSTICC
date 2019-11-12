@@ -73,15 +73,15 @@ public class Functions {
 	
 	
 	//returns a User record if username and email match the input
-	public static DataClasses.User pullUserData(String m_number, String password, Connection dbConnection) throws SQLException {
+	public static DataClasses.User pullUserData(String mNumber, String password, Connection dbConnection) throws SQLException {
 		
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ="+m_number+" AND pw="+password);
+		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ="+mNumber+" AND pw ="+password);
 		results.next();
 		
-		if( (results.getString("m_number") == m_number) && (results.getString("pw") == password))
+		if( (results.getString("m_number") == mNumber) && (results.getString("pw") == password))
 		{	
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
@@ -336,7 +336,6 @@ public class Functions {
 		
 	}
 
-	
 	
 	
 	//contains examples and opens database
