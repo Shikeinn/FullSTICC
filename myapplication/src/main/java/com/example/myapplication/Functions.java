@@ -80,9 +80,9 @@ public class Functions {
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND PW ='"+password+ "'");
 		results.next();
-		
+		System.out.println("Egg-142");
 		if( (results.getString("m_number") == mNumber) && (results.getString("PW") == password))
-		{	
+		{	System.out.println("Egg0");
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
 				results.getString("m_number"), 
@@ -102,7 +102,7 @@ public class Functions {
 				
 				return pulledUser;
 		}
-		else {return null;}
+		else {System.out.println("Egg1");return null;}
 	}
 
 	
@@ -344,18 +344,18 @@ public class Functions {
 		Connection dbConnection = MySqlCon.connect();
 		//create DataClass examples
 		
-		String dateString = "2019-12-12";
+		//String dateString = "2019-12-12";
 		
-		Date date = formatter.parse(dateString);
+		//Date date = formatter.parse(dateString);
 		
-		DataClasses.Event event = new DataClasses.Event("CSC meeting", "0", "0", date ,"1 hour", "0", "Meet Your Professors: Dr. Phillips");
+		//DataClasses.Event event = new DataClasses.Event("CSC meeting", "0", "0", date ,"1 hour", "0", "Meet Your Professors: Dr. Phillips");
 		//DataClasses.User user = new DataClasses.User("XxGam3r_SW4GxX", "m1000011", "GamerBoi@gamer.com", "Nixon4Prez", "Early Childhood Education", "1", "2","3", "0", "1", "2", "-1", "-1", "-1", "-1");
 		//DataClasses.Location Loc = new DataClasses.Location("2", "HONR"); 
 		
 		
 		//push DataClass examples
 		//Functions.pushUsertoDatabase(user, dbConnection);
-		Functions.pushEventtoDatabase(event, dbConnection);
+		//Functions.pushEventtoDatabase(event, dbConnection);
 		//Functions.pushLoctoDatabase(Loc, dbConnection);
 		
 		
@@ -367,15 +367,15 @@ public class Functions {
 		
 		//pull event example
 		//Event pulled2 = pullEventData("CSC meeting", "Oct 25, 2019; 12:30pm", dbConnection);
-		//DataClasses.User pulled2 = pullUserData("XxGam3r_SW4GxX","Nixon4Prez", dbConnection);
+		DataClasses.User pulled2 = pullUserData("M100000","password", dbConnection);
 		//DataClasses.Location pulled2 = pullLocData("KOM", dbConnection);
 		
 		
 		//print record example
-		/*if(pulled2 != null) {pulled2.printLocation();}
+		if(pulled2 != null) {pulled2.printUser();}
 		else {
 			System.out.println("user not found");
-		}*/
+		}
 		
 		
 		//print array list of Events example
