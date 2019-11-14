@@ -44,14 +44,18 @@ public class HomeView extends AbsoluteLayout implements View {
         titleBar.addComponent(navbar);
         titleBar.setExpandRatio(navbar, 1.0f);
 
+        MenuBar.Command createEvent = new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                navigator.navigateTo("CreateEventView");
+            }
+        };
 
+        MenuBar profileMenu = new MenuBar();
+        profileMenu.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+        titleBar.addComponent(profileMenu);
+        MenuBar.MenuItem profile = profileMenu.addItem("Profile", null, null);
+        profile.addItem("Create an Event", null, createEvent);
 
-        Button login = new Button("Login");
-        login.addClickListener(e -> {
-            navigator.navigateTo("MapView");
-        });
-        login.setSizeUndefined();
-        titleBar.addComponent(login);
 
         ComboBox searchBar = new ComboBox();
         searchBar.setStyleName("searchbox");
