@@ -24,7 +24,7 @@ public class SignUpView extends VerticalLayout implements View {
         logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
 
-        TextField username = new TextField();
+        TextField mNumber = new TextField();
 
         TextField password = new TextField();
 
