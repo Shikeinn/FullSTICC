@@ -25,8 +25,8 @@ public class LoginView extends VerticalLayout implements View {
         
         Connection dbConnection = MySqlCon.connect();
         
-        final TextField username = new TextField();
-        username.setCaption("Username");
+        final TextField m_num = new TextField();
+        m_num.setCaption("Username");
 
         final PasswordField password = new PasswordField("Password");
         password.setCaption("Password");
@@ -34,58 +34,64 @@ public class LoginView extends VerticalLayout implements View {
 
         Button loginButton = new Button("Login");
         loginButton.addClickListener(e ->{
-            String name = username.getValue();
+            String mnumber = m_num.getValue();
             String pw = password.getValue();
-            User user = null;
+            //System.out.println(mnumber);
+            //System.out.println(pw);
+            System.out.println("egg0");
             try {
-                user = Functions.pullUserData(name, pw, dbConnection);
-                System.out.println(user);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println("egg.5");
+                User user = Functions.pullUserData(mnumber, pw, dbConnection);
+                System.out.println("egg1");
+             if(user == null){
+                 System.out.println("egg2");
+            Notification.show("Wrong M-Number or Password", Notification.Type.WARNING_MESSAGE);
             }
-            if(user == null){
-        	//display error message
+            else {
+                UI.getCurrent().removeWindow(login);
+                navigator.navigateTo("main");
+            }
+            //System.out.println(user);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        else {
-        	UI.getCurrent().removeWindow(login);
-            navigator.navigateTo("main");
-        }});
+       });
 
 
-        Button signUp = new Button("Sign Up");
-        signUp.addClickListener(e -> {
-            UI.getCurrent().removeWindow(login);
-            navigator.navigateTo("SignUp");
-        });
-        signUp.setWidth("100%");
+    Button signUp = new Button("Sign Up");
+    signUp.addClickListener(e -> {
+        UI.getCurrent().removeWindow(login);
+        navigator.navigateTo("SignUp");
+    });
+    signUp.setWidth("100%");
 
-        // Bottom buttons
-        HorizontalLayout btnLayout = new HorizontalLayout();
-        VerticalLayout layout = new VerticalLayout();
-        btnLayout.addComponents(loginButton, signUp);
+    // Bottom buttons
+    HorizontalLayout btnLayout = new HorizontalLayout();
+    VerticalLayout layout = new VerticalLayout();
+    btnLayout.addComponents(loginButton, signUp);
 
-        Label logo = new Label("<h2>MTConnect</h2>");
-        logo.setContentMode(ContentMode.HTML);
-        layout.addComponent(logo);
-        layout.addComponents(username, password, btnLayout);
+    Label logo = new Label("<h2>MTConnect</h2>");
+    logo.setContentMode(ContentMode.HTML);
+    layout.addComponent(logo);
+    layout.addComponents(m_num, password, btnLayout);
 
-        // Alignment
-        layout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
-        layout.setComponentAlignment(username, Alignment.MIDDLE_CENTER);
-        layout.setComponentAlignment(password, Alignment.MIDDLE_CENTER);
-        layout.setComponentAlignment(btnLayout, Alignment.MIDDLE_CENTER);
+    // Alignment
+    layout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
+    layout.setComponentAlignment(m_num, Alignment.MIDDLE_CENTER);
+    layout.setComponentAlignment(password, Alignment.MIDDLE_CENTER);
+    layout.setComponentAlignment(btnLayout, Alignment.MIDDLE_CENTER);
 
 
-        login.setContent(layout);
-        login.center();
-        login.setWidth(300f, Unit.PIXELS);
-        login.setHeight(300f, Unit.PIXELS);
-        login.setModal(true);
-        login.setClosable(false);
-        login.setDraggable(false);
-        login.setResizable(false);
+    login.setContent(layout);
+    login.center();
+    login.setWidth(300f, Unit.PIXELS);
+    login.setHeight(300f, Unit.PIXELS);
+    login.setModal(true);
+    login.setClosable(false);
+    login.setDraggable(false);
+    login.setResizable(false);
 
-        UI.getCurrent().addWindow(login);
+    UI.getCurrent().addWindow(login);
         login.bringToFront();
     }
 }

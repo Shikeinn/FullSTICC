@@ -8,6 +8,9 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -32,7 +35,11 @@ public class NavigatorUI extends UI {
         navigator.addView("", new LoginView(navigator));
         navigator.addView(MAINVIEW, new HomeView(navigator));
         navigator.addView("MapView", new MapView(navigator));
-        navigator.addView("SignUp", new SignUpView(navigator));
+        try {
+            navigator.addView("SignUp", new SignUpView(navigator));
+        } catch (SQLException ex) {
+            Logger.getLogger(NavigatorUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         navigator.addView("CreateEventView", new CreateEventView(navigator));
 
     }

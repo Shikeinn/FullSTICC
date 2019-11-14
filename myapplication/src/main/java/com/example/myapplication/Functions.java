@@ -80,7 +80,9 @@ public class Functions {
 		st.executeQuery("use mtconnect");
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
-		results.next();
+                if(results.next() == false) {
+                return null;
+                }
 				
 		String m_test = results.getString("m_number");
 		String pass_test = results.getString("pw");
@@ -442,16 +444,16 @@ public class Functions {
 		
 		//pull event example
 		//Event pulled2 = pullEventData("CSC meeting", "Oct 25, 2019; 12:30pm", dbConnection);
-		DataClasses.User pulled2 = pullUserData("M100000","password", dbConnection);
+		//DataClasses.User pulled2 = pullUserData("M100000","password", dbConnection);
 		//DataClasses.Location pulled2 = pullLocData("KOM", dbConnection);
 		
 		
 		//print record example
-		if(pulled2 != null) {pulled2.printUser();}
+		/*if(pulled2 != null) {pulled2.printUser();}
 		else {
 			System.out.println("user not found");
 		}
-		
+		*/
 		
 		//print array list of Events example
 		/*

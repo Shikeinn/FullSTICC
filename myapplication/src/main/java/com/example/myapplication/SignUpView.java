@@ -4,6 +4,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import jdk.nashorn.internal.ir.WhileNode;
 
 import java.util.Arrays;
@@ -13,9 +15,10 @@ import java.util.Collection;
 
 public class SignUpView extends VerticalLayout implements View {
 
-    public SignUpView(Navigator navigator){
+    public SignUpView(Navigator navigator) throws SQLException{
         final VerticalLayout layout = new VerticalLayout();
-
+        
+        Connection dbConnection = MySqlCon.connect();
         // Title Bar
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
@@ -27,6 +30,7 @@ public class SignUpView extends VerticalLayout implements View {
         TextField mNumber = new TextField("M#");
 
         TextField password = new TextField("Password");
+        
 
         // Create Major Selection
         List<String> majorList = Arrays.asList("Computer Science", "Mathematics");
@@ -36,6 +40,7 @@ public class SignUpView extends VerticalLayout implements View {
         major.setWidth(300f, Unit.PIXELS);
 
         // Create Interest Selection
+       // ArrayList<String>interestList = Functions.get_interest_names(dbConnection);
         List<String> interestList = Arrays.asList("Hiking", "Languages");
         final ComboBox<String> interest = new ComboBox<String>("Interest One", interestList);
         interest.setPlaceholder("Please select an interest");
