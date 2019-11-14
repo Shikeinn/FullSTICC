@@ -24,9 +24,9 @@ public class SignUpView extends VerticalLayout implements View {
         logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
 
-        TextField mNumber = new TextField();
+        TextField mNumber = new TextField("M#");
 
-        TextField password = new TextField();
+        TextField password = new TextField("Password");
 
         // Create Major Selection
         List<String> majorList = Arrays.asList("Computer Science", "Mathematics");
@@ -61,7 +61,7 @@ public class SignUpView extends VerticalLayout implements View {
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(username, password, major, interest, club, buttons);
+        layout.addComponents(mNumber, password, major, interest, club, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
