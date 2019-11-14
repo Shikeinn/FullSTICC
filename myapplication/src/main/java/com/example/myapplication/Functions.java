@@ -61,6 +61,7 @@ public class Functions {
 		
 	}
 	
+	/*
 	//push a location to the database, given Location object and Connection
 	public static void pushLoctoDatabase(DataClasses.Location x, Connection dbConnection) throws SQLException {
 		Statement st = dbConnection.createStatement();
@@ -69,7 +70,7 @@ public class Functions {
 		st.executeUpdate("INSERT INTO location_m(location_name, location_name, lat, long)" + "VALUE ('"+x.location_name+"','"+x.location_name+"', '"+x.latitude+"', '"+x.longitude+"')");
 		
 	}
-	
+	*/
 	
 	
 	//returns a User record if username and email match the input
@@ -80,17 +81,12 @@ public class Functions {
 		
 		ResultSet results = st.executeQuery("SELECT * FROM user_m WHERE m_number ='"+mNumber+"' AND pw ='"+password+ "'");
 		results.next();
-		
-		System.out.printf("%s, %s, \n", mNumber, password);
-		System.out.printf("%s, %s, \n", results.getString("m_number"), results.getString("pw"));
-		
+				
 		String m_test = results.getString("m_number");
 		String pass_test = results.getString("pw");
 		
-		System.out.printf("%b, %b \n", (m_test.equals(mNumber) ), (pass_test.equals(password) ) );
-		
 		if( (m_test.equals(mNumber) ) && (pass_test.equals(password) ) )
-		{	System.out.println("Egg0");
+		{	
 			DataClasses.User pulledUser = new DataClasses.User(
 				results.getString("name_f"),
 				results.getString("m_number"), 
@@ -110,7 +106,7 @@ public class Functions {
 				
 				return pulledUser;
 		}
-		else {System.out.println("Egg1");return null;}
+		else {return null;}
 	}
 
 	
@@ -275,10 +271,10 @@ public class Functions {
 	
 	
 	//used to delete User records by their name_f and password
-	public static void deleteUserRecord(String username, String password, Connection dbConnection) throws SQLException {
+	public static void deleteUserRecord(String mNumber, String password, Connection dbConnection) throws SQLException {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String sql = "delete from user_m where name_f = '"+username+"' AND pw = '"+password+"' ";
+		String sql = "delete from user_m where m_number = '"+mNumber+"' AND pw = '"+password+"' ";
 		
 		st.executeUpdate(sql);
 	}
@@ -301,11 +297,7 @@ public class Functions {
 		st.executeUpdate(sql);
 	}
 	
-	//Functions Cody wanted
-	//use String.toLowerCase()
-	
-	
-	
+
 	
 	//pull 10 events by location
 	//returns an ArrayList of Events
@@ -343,6 +335,79 @@ public class Functions {
 		return eventArrayList; //returns the event
 		
 	}
+
+	public static ArrayList<String> get_club_names(Connection dbConnection) throws SQLException{
+		Statement st = dbConnection.createStatement();
+		st.executeQuery("use mtconnect");
+		String query = "{get_club_names()}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+		
+		String club_name = "";
+		ArrayList<String> clubArrayList = new ArrayList<String>();
+		
+		ResultSet results = stmt.executeQuery();
+		while(results.next() ) {
+			club_name = results.getString("club_name");
+			
+			clubArrayList.add(club_name);
+		}
+		return clubArrayList;
+	}
+	
+	public static ArrayList<String> get_location_names(Connection dbConnection) throws SQLException{
+		Statement st = dbConnection.createStatement();
+		st.executeQuery("use mtconnect");
+		String query = "{get_location_names()}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+		
+		String location_name = "";
+		ArrayList<String> locationArrayList = new ArrayList<String>();
+		
+		ResultSet results = stmt.executeQuery();
+		while(results.next() ) {
+			location_name = results.getString("location_name");
+			
+			locationArrayList.add(location_name);
+		}
+		return locationArrayList;
+	}
+	
+	public static ArrayList<String> get_event_type_names(Connection dbConnection) throws SQLException{
+		Statement st = dbConnection.createStatement();
+		st.executeQuery("use mtconnect");
+		String query = "{get_event_type_names()}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+		
+		String event_type_name = "";
+		ArrayList<String> eventTypeArrayList = new ArrayList<String>();
+		
+		ResultSet results = stmt.executeQuery();
+		while(results.next() ) {
+			event_type_name = results.getString("event_type_name");
+			
+			eventTypeArrayList.add(event_type_name);
+		}
+		return eventTypeArrayList;
+	}
+	
+	public static ArrayList<String> get_interest_names(Connection dbConnection) throws SQLException{
+		Statement st = dbConnection.createStatement();
+		st.executeQuery("use mtconnect");
+		String query = "{get_interest_names()}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+		
+		String interest_name = "";
+		ArrayList<String> interestArrayList = new ArrayList<String>();
+		
+		ResultSet results = stmt.executeQuery();
+		while(results.next() ) {
+			interest_name = results.getString("interest_name");
+			
+			interestArrayList.add(interest_name);
+		}
+		return interestArrayList;
+	}
+	
 
 	
 	
