@@ -136,25 +136,27 @@ public class Functions {
 	}
 		
 	//returns a Location record if location_name match the inputs
-	public static DataClasses.Location pullLocData(String locationName, Connection dbConnection) throws SQLException
+	public static ArrayList<Double> pullLocData(String locationName, Connection dbConnection) throws SQLException
 	{
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
+		String query = "{get_club_names()}";
+		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
-		ResultSet results = st.executeQuery("SELECT * FROM location_m WHERE location_name ="+locationName+"");
-		results.next();
-		if( (results.getString("location_name") == locationName))
-		{	
-			DataClasses.Location pulledLoc = new DataClasses.Location(
-				results.getString("location_name"),
-				results.getString("location_name"),
-				results.getDouble("latitude"), 
-				results.getDouble("longitude")
-				); 
+		Double latitude = 0.0;
+		Double longitude = 0.0;
+
+		ArrayList<Double> locationArrayList = new ArrayList<Double>();
+		ResultSet results = stmt.executeQuery();
+		while(results.next() ) {
+			latitude = results.getDouble("latitude");
+			longitude = results.getDouble("longitude");
 			
-				return pulledLoc;
+			locationArrayList.add(latitude);
+			locationArrayList.add(longitude);
 		}
-		else {return null;}
+		return locationArrayList;
+		
 	}
 	
 	
