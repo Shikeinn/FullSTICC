@@ -70,5 +70,6 @@ public class SignUpView extends VerticalLayout implements View {
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
+
     }
 }

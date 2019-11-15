@@ -33,6 +33,7 @@ public class NavigatorUI extends UI {
 
         // Create and register the views
         navigator.addView("", new LoginView(navigator));
+        navigator.addView("Login", new LoginView(navigator));
         navigator.addView(MAINVIEW, new HomeView(navigator));
         navigator.addView("MapView", new MapView(navigator));
         try {

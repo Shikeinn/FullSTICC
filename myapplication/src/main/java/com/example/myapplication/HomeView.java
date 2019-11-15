@@ -50,11 +50,18 @@ public class HomeView extends AbsoluteLayout implements View {
             }
         };
 
+        MenuBar.Command logOut = new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                navigator.navigateTo("Login");
+            }
+        };
+
         MenuBar profileMenu = new MenuBar();
         profileMenu.setStyleName(ValoTheme.BUTTON_BORDERLESS);
         titleBar.addComponent(profileMenu);
         MenuBar.MenuItem profile = profileMenu.addItem("Profile", null, null);
         profile.addItem("Create an Event", null, createEvent);
+        profile.addItem("Logout", null, logOut);
 
 
         ComboBox searchBar = new ComboBox();
@@ -66,7 +73,7 @@ public class HomeView extends AbsoluteLayout implements View {
         /* ----- GRID LAYOUT -----*/
         GridLayout events = new GridLayout(4,1);
         events.setWidth("100%");
-        addComponent(events, "top: 500px");
+        addComponent(events, "top: 50%");
 
         // Packaging up one poster
         VerticalLayout eventpackage1 = new VerticalLayout();
