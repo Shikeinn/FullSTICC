@@ -26,7 +26,7 @@ public class LoginView extends VerticalLayout implements View {
         Connection dbConnection = MySqlCon.connect();
         
         final TextField m_num = new TextField();
-        m_num.setCaption("Username");
+        m_num.setCaption("M Number");
 
         final PasswordField password = new PasswordField("Password");
         password.setCaption("Password");

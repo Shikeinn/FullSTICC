@@ -1,0 +1,6 @@
+just creating a general list of issues that need fixing
+1. the login view requires logging in twice to enter
+2. the create an event and user are incomplete
+3. the main page doesn't contain real fliers yet
+4. images are not currently stored on the database
+5. the main pages fliers has the following missing components - the search function and appropriate view, the fliers aren't legit
