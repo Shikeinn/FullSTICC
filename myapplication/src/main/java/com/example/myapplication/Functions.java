@@ -120,6 +120,9 @@ public class Functions {
 		st.executeQuery("use mtconnect");	
 	
 		ResultSet results = st.executeQuery("SELECT * FROM event_m WHERE event_name ="+event_name+" AND date_of_event="+eventDate);
+                if(results.next() == false) {
+                    return null;
+                }
 		results.next();
 		if( (event_name.equalsIgnoreCase(results.getString("event_name"))) && (eventDate.equalsIgnoreCase(results.getString("date_of_event")) ) )
 		{	

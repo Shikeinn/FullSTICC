@@ -38,13 +38,9 @@ public class LoginView extends VerticalLayout implements View {
             String pw = password.getValue();
             //System.out.println(mnumber);
             //System.out.println(pw);
-            System.out.println("egg0");
             try {
-                System.out.println("egg.5");
                 User user = Functions.pullUserData(mnumber, pw, dbConnection);
-                System.out.println("egg1");
              if(user == null){
-                 System.out.println("egg2");
             Notification.show("Wrong M-Number or Password", Notification.Type.WARNING_MESSAGE);
             }
             else {
