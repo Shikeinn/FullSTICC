@@ -32,6 +32,13 @@ public class CreateEventView extends VerticalLayout implements View {
         logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
 
+        TextField eventName = new TextField("Event Name");
+        DateField date = new DateField("Date");
+        date.getData();
+        DateTimeField date2 = new DateTimeField("Date");
+
+
+
         // Create Major Selection
         List<String> majorList = Arrays.asList("Computer Science", "Mathematics");
         final ComboBox<String> major = new ComboBox<String>("Major", majorList);
@@ -60,12 +67,11 @@ public class CreateEventView extends VerticalLayout implements View {
 
         Button cancel = new Button("Cancel");
         cancel.addClickListener(e -> {
-            new LoginView(navigator);
-            navigator.navigateTo("");
+            System.out.println(date2.getValue().toString());
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(major, interest, club, buttons);
+        layout.addComponents(eventName, date, date2, major, interest, club, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
