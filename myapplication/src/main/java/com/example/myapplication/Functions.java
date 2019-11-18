@@ -346,7 +346,7 @@ public class Functions {
 	public static ArrayList<String> get_club_names(Connection dbConnection) throws SQLException{
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String query = "{get_club_names()}";
+		String query = "{call get_club_names()}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
 		String club_name = "";
@@ -364,7 +364,7 @@ public class Functions {
 	public static ArrayList<String> get_location_names(Connection dbConnection) throws SQLException{
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String query = "{get_location_names()}";
+		String query = "{call get_location_names()}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
 		String location_name = "";
@@ -382,7 +382,7 @@ public class Functions {
 	public static ArrayList<String> get_event_type_names(Connection dbConnection) throws SQLException{
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String query = "{get_event_type_names()}";
+		String query = "{call get_event_type_names()}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
 		String event_type_name = "";
@@ -400,7 +400,7 @@ public class Functions {
 	public static ArrayList<String> get_interest_names(Connection dbConnection) throws SQLException{
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
-		String query = "{get_interest_names()}";
+		String query = "{call get_interest_names()}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
 		String interest_name = "";

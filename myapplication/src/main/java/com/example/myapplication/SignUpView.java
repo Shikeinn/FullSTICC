@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import jdk.nashorn.internal.ir.WhileNode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,12 +28,14 @@ public class SignUpView extends VerticalLayout implements View {
         logo.setContentMode(ContentMode.HTML);
         titleBar.addComponent(logo);
 
+        TextField name_f = new TextField("Full Name");
         TextField mNumber = new TextField("M#");
-
+        TextField email = new TextField("Email");
         TextField password = new TextField("Password");
-        
+
 
         // Create Major Selection
+
         List<String> majorList = Arrays.asList("Computer Science", "Mathematics");
         final ComboBox<String> major = new ComboBox<String>("Major", majorList);
         major.setPlaceholder("Please select your major");
@@ -40,19 +43,19 @@ public class SignUpView extends VerticalLayout implements View {
         major.setWidth(300f, Unit.PIXELS);
 
         // Create Interest Selection
-       // ArrayList<String>interestList = Functions.get_interest_names(dbConnection);
-        List<String> interestList = Arrays.asList("Hiking", "Languages");
-        final ComboBox<String> interest = new ComboBox<String>("Interest One", interestList);
+        ArrayList<String> interestList = Functions.get_interest_names(dbConnection);
+        final ComboBox interest = new ComboBox("Interest One", interestList);
         interest.setPlaceholder("Please select an interest");
         interest.setEmptySelectionAllowed(false);
         interest.setWidth(300f, Unit.PIXELS);
 
         // Create Club Selection
-        List<String> clubList = Arrays.asList("ACM", "American Sign Language", "Cinema Club");
+        ArrayList<String> clubList = Functions.get_club_names(dbConnection);
         final ComboBox<String> club = new ComboBox<String>("Club One", clubList);
         club.setPlaceholder("Please select a club");
         club.setWidth(300f, Unit.PIXELS);
 
+        //add push to user function here and check if complete resend if null
         Button cont = new Button("Continue");
         cont.addClickListener(e -> {
            navigator.navigateTo("main");
@@ -66,7 +69,7 @@ public class SignUpView extends VerticalLayout implements View {
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(mNumber, password, major, interest, club, buttons);
+        layout.addComponents(name_f, mNumber, email, password, major, interest, club, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);

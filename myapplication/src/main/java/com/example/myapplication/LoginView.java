@@ -44,7 +44,7 @@ public class LoginView extends VerticalLayout implements View {
             Notification.show("Wrong M-Number or Password", Notification.Type.WARNING_MESSAGE);
             }
             else {
-                UI.getCurrent().removeWindow(login);
+                //UI.getCurrent().removeWindow(login);
                 navigator.navigateTo("main");
             }
             //System.out.println(user);
@@ -56,8 +56,8 @@ public class LoginView extends VerticalLayout implements View {
 
     Button signUp = new Button("Sign Up");
     signUp.addClickListener(e -> {
-        UI.getCurrent().removeWindow(login);
         navigator.navigateTo("SignUp");
+        UI.getCurrent().removeWindow(login);
     });
     signUp.setWidth("100%");
 
