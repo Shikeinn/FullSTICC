@@ -40,16 +40,17 @@ public class LoginView extends VerticalLayout implements View {
             //System.out.println(pw);
             try {
                 User user = Functions.pullUserData(mnumber, pw, dbConnection);
-             if(user == null){
-            Notification.show("Wrong M-Number or Password", Notification.Type.WARNING_MESSAGE);
-            }
-            else {
-                //UI.getCurrent().removeWindow(login);
-                navigator.navigateTo("main");
-            }
+                if(user == null){
+                Notification.show("Wrong M-Number or Password", Notification.Type.WARNING_MESSAGE);
+                }
+                else {
+
+                    navigator.navigateTo("main");
+                    UI.getCurrent().removeWindow(login);
+                }
             //System.out.println(user);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
         }
        });
 
@@ -88,6 +89,6 @@ public class LoginView extends VerticalLayout implements View {
     login.setResizable(false);
 
     UI.getCurrent().addWindow(login);
-        login.bringToFront();
+    login.bringToFront();
     }
 }

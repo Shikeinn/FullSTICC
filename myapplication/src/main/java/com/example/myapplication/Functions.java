@@ -46,7 +46,7 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		String query = "{create_event(?, ?, ?, ?, ?, ?, ?)}";
+		String query = "{call create_event(?, ?, ?, ?, ?, ?, ?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		stmt.setString(1, x.event_name);
 		stmt.setString(2, x.club_name);
