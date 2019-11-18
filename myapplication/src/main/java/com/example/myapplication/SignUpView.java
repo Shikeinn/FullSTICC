@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import com.example.myapplication.DataClasses.User;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.shared.ui.ContentMode;
@@ -13,6 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SignUpView extends VerticalLayout implements View {
 
@@ -58,6 +61,21 @@ public class SignUpView extends VerticalLayout implements View {
         //add push to user function here and check if complete resend if null
         Button cont = new Button("Continue");
         cont.addClickListener(e -> {
+           User user = new User();
+           user.name_f = name_f.getValue();
+           user.m_number = mNumber.getValue();
+           user.email = email.getValue();
+           user.pw = password.getValue();
+           user.major = major.getValue();
+           user.interest_1 = (String) interest.getValue();
+           user.club_sk_1 = club.getValue();
+           
+            try {
+                Functions.pushUsertoDatabase(user, dbConnection);
+            } catch (SQLException ex) {
+                Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
            navigator.navigateTo("main");
            Notification.show("Sign Up Successful");
         });
