@@ -33,9 +33,9 @@ public class MySqlCon {
     public static Connection connect() {
         if (connection == null) {
             try {
-		System.out.println("hello world");
+		System.out.println("Connecting to Database...");
                 Class.forName(DATABASE_DRIVER);
-		System.out.println("hello world");
+		System.out.println("Connected.");
                 connection = DriverManager.getConnection(DATABASE_URL, getProperties());
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
