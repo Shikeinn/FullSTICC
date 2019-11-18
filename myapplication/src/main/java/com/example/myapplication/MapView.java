@@ -75,8 +75,7 @@ public class MapView extends AbsoluteLayout implements View {
         profileMenu.setStyleName(ValoTheme.BUTTON_BORDERLESS);
         titleBar.addComponent(profileMenu);
         MenuBar.MenuItem profile = profileMenu.addItem("Profile", null, null);
-        profile.addItem("Create an Event", null, createEvent);
-
+        MenuBar.MenuItem createAnEvent = profile.addItem("Create an Event", null, createEvent);
 
     }
 }
