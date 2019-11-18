@@ -18,7 +18,7 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-		String query = "{create_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+		String query = "{call create_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
 		stmt.setString(1, x.name_f);
@@ -26,17 +26,16 @@ public class Functions {
 		stmt.setString(3, x.email);
 		stmt.setString(4, x.pw);
 		stmt.setString(5, x.major);
-		stmt.setString(6, x.major);
-		stmt.setString(7, x.interest_1);
-		stmt.setString(8, x.interest_2);
-		stmt.setString(9, x.interest_3);
-		stmt.setString(10, x.club_sk_1);
-		stmt.setString(11, x.club_sk_2);
-		stmt.setString(12, x.club_sk_3);
-		stmt.setString(13, x.club_sk_4);
-		stmt.setString(14, x.club_sk_5);
-		stmt.setString(15, x.club_sk_6);
-		stmt.setString(16, x.club_sk_7);
+		stmt.setString(6, x.interest_1);
+		stmt.setString(7, x.interest_2);
+		stmt.setString(8, x.interest_3);
+		stmt.setString(9, x.club_sk_1);
+		stmt.setString(10, x.club_sk_2);
+		stmt.setString(11, x.club_sk_3);
+		stmt.setString(12, x.club_sk_4);
+		stmt.setString(13, x.club_sk_5);
+		stmt.setString(14, x.club_sk_6);
+		stmt.setString(15, x.club_sk_7);
 		
 		stmt.executeUpdate();
 	}
