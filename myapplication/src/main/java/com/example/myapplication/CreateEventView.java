@@ -63,7 +63,7 @@ public class CreateEventView extends VerticalLayout implements View {
         location.setPlaceholder("Please select a location");
         location.setWidth(300f, Unit.PIXELS);
 
-        TextField description = new TextField("Event Description");
+        TextArea description = new TextArea("Event Description");
         description.setHeight(200f, Unit.PIXELS);
         description.setWidth(300f, Unit.PIXELS);
 
