@@ -71,7 +71,15 @@ public class SignUpView extends VerticalLayout implements View {
            user.club_sk_1 = club.getValue();
            
             try {
-                Functions.pushUsertoDatabase(user, dbConnection);
+                
+                    String pass = Functions.pushUsertoDatabase(user, dbConnection);
+                    
+                    if ( pass.equals("Failure") ){
+                        Notification.show("Invalid Signup");
+                        navigator.navigateTo("SignUp");
+                    }
+                    //needs to retry and NOT push to database if fields are empty
+                    
             } catch (SQLException ex) {
                 Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
             }

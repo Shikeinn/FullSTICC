@@ -13,11 +13,16 @@ public class Functions {
 	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 	
 	//push a User to the database, given User object and Connection
-	public static void pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
+	public static String pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
 		
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
+                if( (x.name_f == null) || (x.pw == null) || ( (x.name_f).equals("") ) || ( (x.pw).equals("") )   ){
+                    return ("Failure");
+                }
+                
+                
 		String query = "{call create_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
 		
@@ -38,6 +43,7 @@ public class Functions {
 		stmt.setString(15, x.club_sk_7);
 		
 		stmt.executeUpdate();
+                return ("Success");
 	}
 	
 	//push an Event to the database, given Event object and Connection
