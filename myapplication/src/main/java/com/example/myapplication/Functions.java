@@ -15,14 +15,12 @@ public class Functions {
 	//push a User to the database, given User object and Connection
 	public static String pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
 		
-		Statement st = dbConnection.createStatement();
-		st.executeQuery("use mtconnect");
-		
                 if( (x.name_f == null) || (x.pw == null) || ( (x.name_f).equals("") ) || ( (x.pw).equals("") )
                         || ( (x.m_number).equals("") ) || ( (x.m_number).equals("") )   ){
                     return ("Failure");
                 }
-                
+		Statement st = dbConnection.createStatement();
+		st.executeQuery("use mtconnect");
                 
 		String query = "{call create_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
@@ -48,8 +46,14 @@ public class Functions {
 	}
 	
 	//push an Event to the database, given Event object and Connection
-	public static void pushEventtoDatabase(DataClasses.Event x, Connection dbConnection) throws SQLException {
+	public static String pushEventtoDatabase(DataClasses.Event x, Connection dbConnection) throws SQLException {
 		
+            
+                if( (x.event_name == null) || (x.club_name == null) || ( (x.event_name).equals("") ) || ( (x.club_name).equals("") )
+                        || ( (x.location_name).equals("") ) || ( (x.location_name).equals("") )   ){
+                    return ("Failure");
+                }            
+            
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
@@ -64,7 +68,7 @@ public class Functions {
 		stmt.setString(7, x.event_desc);
 		
 		stmt.executeUpdate();
-		
+		return ("Success");
 	}
 	
 	/*
