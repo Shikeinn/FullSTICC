@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
  * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
  * overridden to add component to the user interface and initialize non-component functionality.
  */
+@PreserveOnRefresh
 @Theme("mytheme")
 public class NavigatorUI extends UI {
     public Navigator navigator;

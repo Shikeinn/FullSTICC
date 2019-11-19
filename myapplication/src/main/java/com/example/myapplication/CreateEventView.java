@@ -33,9 +33,7 @@ public class CreateEventView extends VerticalLayout implements View {
         titleBar.addComponent(logo);
 
         TextField eventName = new TextField("Event Name");
-        DateField date = new DateField("Date");
-        date.getData();
-        DateTimeField date2 = new DateTimeField("Date");
+        DateTimeField date2 = new DateTimeField("Date");  //Outputs yyyy-MM-ddTHH:MM
 
 
 
@@ -71,9 +69,10 @@ public class CreateEventView extends VerticalLayout implements View {
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(eventName, date, date2, major, interest, club, buttons);
+        layout.addComponents(eventName, date2, major, interest, club, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
+
     }
 }
