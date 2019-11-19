@@ -1627,13 +1627,6 @@ div.v-layout.v-horizontal.v-widget {
 	vertical-align: top;
 }
 
-span.v-menubar-menuitem-caption {
-	font-family: "Arial Black", Gadget, sans-serif;
-	font-weight: bold;
-	color: black;
-	opacity: 100%;
-}
-
 .mytheme.v-app, .mytheme.v-app-loading {
 	font: 300 16px/1.55 "Open Sans", sans-serif;
 	color: #464646;
@@ -15247,4 +15240,15 @@ span.v-menubar-menuitem-caption {
 
 .mytheme .v-widget {
 	opacity: 100%;
+}
+
+.mytheme span.v-menubar-menuitem-caption {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: black;
+	opacity: 100%;
+}
+
+.mytheme .v-absolutelayout .v-layout .v-widget .v-has-width .v-has-height {
+	overflow: auto;
 }
