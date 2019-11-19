@@ -44,6 +44,7 @@ public class NavigatorUI extends UI {
             Logger.getLogger(NavigatorUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         navigator.addView("CreateEventView", new CreateEventView(navigator));
+        navigator.addView("blank", new StartView(navigator));
 
     }
 

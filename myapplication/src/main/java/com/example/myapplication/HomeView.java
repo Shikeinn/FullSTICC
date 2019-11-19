@@ -52,7 +52,9 @@ public class HomeView extends AbsoluteLayout implements View {
 
         MenuBar.Command logOut = new MenuBar.Command() {
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                navigator.navigateTo("Login");
+                navigator.navigateTo("blank");
+                addComponent(new LoginView(navigator));
+
             }
         };
 

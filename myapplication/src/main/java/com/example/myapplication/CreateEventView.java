@@ -12,6 +12,8 @@ import com.vaadin.ui.*;
 import com.example.myapplication.DataClasses.User;
 import com.example.myapplication.Functions;
 import com.example.myapplication.MySqlCon;
+
+//import javax.xml.soap.Text;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,29 +35,36 @@ public class CreateEventView extends VerticalLayout implements View {
         titleBar.addComponent(logo);
 
         TextField eventName = new TextField("Event Name");
-        DateTimeField date2 = new DateTimeField("Date");  //Outputs yyyy-MM-ddTHH:MM
+        eventName.setWidth(300f, Unit.PIXELS);
+        TextField date2 = new TextField("Date (yyyy-mm-dd HH:mm:ss)");  //Outputs yyyy-MM-ddTHH:MM
+        date2.setWidth(300f, Unit.PIXELS);
+        TextField duration = new TextField("Duration of Event");
+        duration.setPlaceholder("'30 minutes'/'1 hour'/etc.");
+        duration.setWidth(300f, Unit.PIXELS);
 
-
-
-        // Create Major Selection
-        List<String> majorList = Arrays.asList("Computer Science", "Mathematics");
-        final ComboBox<String> major = new ComboBox<String>("Major", majorList);
-        major.setPlaceholder("Please select your major");
-        major.setEmptySelectionAllowed(false);
-        major.setWidth(300f, Unit.PIXELS);
 
         // Create Interest Selection
         List<String> interestList = Arrays.asList("Hiking", "Languages");
-        final ComboBox<String> interest = new ComboBox<String>("Interest One", interestList);
+        final ComboBox<String> interest = new ComboBox<String>("Interest", interestList);
         interest.setPlaceholder("Please select an interest");
         interest.setEmptySelectionAllowed(false);
         interest.setWidth(300f, Unit.PIXELS);
 
         // Create Club Selection
         List<String> clubList = Arrays.asList("ACM", "American Sign Language", "Cinema Club");
-        final ComboBox<String> club = new ComboBox<String>("Club One", clubList);
+        final ComboBox<String> club = new ComboBox<String>("Host Club", clubList);
         club.setPlaceholder("Please select a club");
         club.setWidth(300f, Unit.PIXELS);
+
+        // Create Location Selection
+        List<String> locList = Arrays.asList("KOM", "Your Mom's House", "Student Union", "Walker Library");
+        final ComboBox<String> location = new ComboBox<String>("Select a location", locList);
+        location.setPlaceholder("Please select a location");
+        location.setWidth(300f, Unit.PIXELS);
+
+        TextArea description = new TextArea("Event Description");
+        description.setHeight(200f, Unit.PIXELS);
+        description.setWidth(300f, Unit.PIXELS);
 
         Button cont = new Button("Continue");
         cont.addClickListener(e -> {
@@ -65,11 +74,12 @@ public class CreateEventView extends VerticalLayout implements View {
 
         Button cancel = new Button("Cancel");
         cancel.addClickListener(e -> {
-            System.out.println(date2.getValue().toString());
+            navigator.navigateTo("blank");
+            new LoginView(navigator);
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(eventName, date2, major, interest, club, buttons);
+        layout.addComponents(eventName, date2, duration, location, interest, club, description, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
