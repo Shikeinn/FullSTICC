@@ -14,20 +14,5 @@ import static com.example.myapplication.NavigatorUI.MAINVIEW;
 public class StartView extends VerticalLayout implements View {
     public StartView(Navigator navigator) {
         setSizeFull();
-
-        Button button = new Button("Go to Main View",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                        navigator.navigateTo("homeView");
-                    }
-                });
-        addComponent(button);
-        setComponentAlignment(button, Alignment.MIDDLE_CENTER);
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-        Notification.show("Welcome to the Animal Farm");
     }
 }
