@@ -36,8 +36,7 @@ public class CreateEventView extends VerticalLayout implements View {
 
         TextField eventName = new TextField("Event Name");
         eventName.setWidth(300f, Unit.PIXELS);
-        TextField date2 = new TextField("Date");  //Outputs yyyy-MM-ddTHH:MM
-        date2.setPlaceholder("yyyy-mm-dd HH:mm:ss");
+        TextField date2 = new TextField("Date (yyyy-mm-dd HH:mm:ss)");  //Outputs yyyy-MM-ddTHH:MM
         date2.setWidth(300f, Unit.PIXELS);
         TextField duration = new TextField("Duration of Event");
         duration.setPlaceholder("'30 minutes'/'1 hour'/etc.");
