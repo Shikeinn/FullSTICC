@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Functions {
-	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 	
 	//push a User to the database, given User object and Connection
 	public static String pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
@@ -18,7 +18,8 @@ public class Functions {
 		Statement st = dbConnection.createStatement();
 		st.executeQuery("use mtconnect");
 		
-                if( (x.name_f == null) || (x.pw == null) || ( (x.name_f).equals("") ) || ( (x.pw).equals("") )   ){
+                if( (x.name_f == null) || (x.pw == null) || ( (x.name_f).equals("") ) || ( (x.pw).equals("") )
+                        || ( (x.m_number).equals("") ) || ( (x.m_number).equals("") )   ){
                     return ("Failure");
                 }
                 
