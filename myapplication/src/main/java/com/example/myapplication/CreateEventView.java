@@ -13,7 +13,7 @@ import com.example.myapplication.DataClasses.User;
 import com.example.myapplication.Functions;
 import com.example.myapplication.MySqlCon;
 
-import javax.xml.soap.Text;
+//import javax.xml.soap.Text;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
