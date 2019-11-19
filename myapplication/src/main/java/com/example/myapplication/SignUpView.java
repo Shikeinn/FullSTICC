@@ -90,8 +90,8 @@ public class SignUpView extends VerticalLayout implements View {
 
         Button cancel = new Button("Cancel");
         cancel.addClickListener(e -> {
+            navigator.navigateTo("blank");
             new LoginView(navigator);
-            navigator.navigateTo("Login");
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
