@@ -6,9 +6,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.*;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
@@ -52,9 +50,8 @@ public class HomeView extends AbsoluteLayout implements View {
 
         MenuBar.Command logOut = new MenuBar.Command() {
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                navigator.navigateTo("blank");
-                addComponent(new LoginView(navigator));
-
+                getUI().getSession().close();
+                getUI().getPage().setLocation("/");
             }
         };
 
