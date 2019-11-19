@@ -78,14 +78,18 @@ public class SignUpView extends VerticalLayout implements View {
                         Notification.show("Invalid Signup");
                         navigator.navigateTo("SignUp");
                     }
+                    
+                    else{
+                        navigator.navigateTo("main");
+                        Notification.show("Sign Up Successful");
+                    }
                     //needs to retry and NOT push to database if fields are empty
                     
             } catch (SQLException ex) {
                 Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
             }
            
-           navigator.navigateTo("main");
-           Notification.show("Sign Up Successful");
+
         });
 
         Button cancel = new Button("Cancel");
