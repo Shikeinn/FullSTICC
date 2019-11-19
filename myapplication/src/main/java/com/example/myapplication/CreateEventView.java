@@ -74,7 +74,8 @@ public class CreateEventView extends VerticalLayout implements View {
 
         Button cancel = new Button("Cancel");
         cancel.addClickListener(e -> {
-            System.out.println(date2.getValue().toString());
+            navigator.navigateTo("blank");
+            new LoginView(navigator);
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
