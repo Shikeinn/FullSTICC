@@ -17,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import static com.example.myapplication.NavigatorUI.MAINVIEW;
+
 public class LoginView extends VerticalLayout implements View {
 
     public LoginView(Navigator navigator){
@@ -45,7 +47,7 @@ public class LoginView extends VerticalLayout implements View {
                 }
                 else {
 
-                    navigator.navigateTo("main");
+                    navigator.navigateTo(MAINVIEW);
                     UI.getCurrent().removeWindow(login);
                 }
             //System.out.println(user);

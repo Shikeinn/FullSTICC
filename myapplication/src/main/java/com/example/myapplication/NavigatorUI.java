@@ -11,6 +11,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,13 @@ public class NavigatorUI extends UI {
         } catch (SQLException ex) {
             Logger.getLogger(NavigatorUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        navigator.addView("CreateEventView", new CreateEventView(navigator));
+        try {
+            navigator.addView("CreateEventView", new CreateEventView(navigator));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         navigator.addView("blank", new StartView(navigator));
 
     }
