@@ -20,7 +20,7 @@ public class HomeView extends AbsoluteLayout implements View {
         /* ----- Title Bar ----- */
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("150");
+        titleBar.setHeight("10%");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 

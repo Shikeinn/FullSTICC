@@ -52,6 +52,11 @@ public class CreateEventView extends VerticalLayout implements View {
         duration.setPlaceholder("'30 minutes'/'1 hour'/etc.");
         duration.setWidth(300f, Unit.PIXELS);
 
+        List<String> eventTypeList = Arrays.asList("Hiking", "Languages");
+        final ComboBox<String> eventType = new ComboBox<String>("Event Type", eventTypeList);
+        eventType.setPlaceholder("Please select an Event Type");
+        eventType.setEmptySelectionAllowed(false);
+        eventType.setWidth(300f, Unit.PIXELS);
 
         // Create Interest Selection
         List<String> interestList = Functions.get_interest_names(dbConnection);
@@ -124,7 +129,7 @@ public class CreateEventView extends VerticalLayout implements View {
         });
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.addComponents(cont, cancel);
-        layout.addComponents(eventName, date2, duration, location, interest, club, description, buttons);
+        layout.addComponents(eventName, date2, duration, location, eventType, interest, club, description, buttons);
         addComponent(layout);
 
         setComponentAlignment(layout, Alignment.MIDDLE_CENTER);

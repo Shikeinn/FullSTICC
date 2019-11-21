@@ -33,15 +33,9 @@ public class MapView extends AbsoluteLayout implements View {
         //   layout.setContent(googleMap);
         addComponent(googleMap);
 
-        HorizontalLayout titleBarColor = new HorizontalLayout();
-        titleBarColor.setWidth("100%");
-        titleBarColor.setHeight("150");
-        //    titleBar.setMargin(new MarginInfo(true, true, false, true));
-        addComponent(titleBarColor);
-
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("150");
+        titleBar.setHeight("10%");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 
@@ -52,6 +46,7 @@ public class MapView extends AbsoluteLayout implements View {
         titleBar.setExpandRatio(logo, 1.0f);
 
         HorizontalLayout navbar = new HorizontalLayout();
+        titleBar.setHeight("10%");
         Button homeBtn = new Button("Home");
         Button mapBtn = new Button("Map");
         homeBtn.setStyleName(ValoTheme.BUTTON_BORDERLESS);
@@ -69,6 +64,13 @@ public class MapView extends AbsoluteLayout implements View {
             }
         };
 
+        MenuBar.Command logOut = new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                getUI().getSession().close();
+                getUI().getPage().setLocation("/");
+            }
+        };
+
         titleBar.addComponent(navbar);
         titleBar.setExpandRatio(navbar, 1.0f);
         MenuBar profileMenu = new MenuBar();
@@ -76,6 +78,7 @@ public class MapView extends AbsoluteLayout implements View {
         titleBar.addComponent(profileMenu);
         MenuBar.MenuItem profile = profileMenu.addItem("Profile", null, null);
         MenuBar.MenuItem createAnEvent = profile.addItem("Create an Event", null, createEvent);
+        profile.addItem("Logout", null, logOut);
 
     }
 }
