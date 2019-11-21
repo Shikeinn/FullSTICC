@@ -17,15 +17,23 @@ import com.example.myapplication.MySqlCon;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class CreateEventView extends VerticalLayout implements View {
 
-    public CreateEventView(Navigator navigator){
+    public CreateEventView(Navigator navigator) throws SQLException, ParseException{
         final VerticalLayout layout = new VerticalLayout();
 
+        Connection dbConnection = MySqlCon.connect();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // Title Bar
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
@@ -36,28 +44,30 @@ public class CreateEventView extends VerticalLayout implements View {
 
         TextField eventName = new TextField("Event Name");
         eventName.setWidth(300f, Unit.PIXELS);
-        TextField date2 = new TextField("Date (yyyy-mm-dd HH:mm:ss)");  //Outputs yyyy-MM-ddTHH:MM
+        
+        TextField date2 = new TextField("Date (yyyy-mm-dd HH:mm:ss)"); //Outputs yyyy-MM-ddTHH:MM
         date2.setWidth(300f, Unit.PIXELS);
+        
         TextField duration = new TextField("Duration of Event");
         duration.setPlaceholder("'30 minutes'/'1 hour'/etc.");
         duration.setWidth(300f, Unit.PIXELS);
 
 
         // Create Interest Selection
-        List<String> interestList = Arrays.asList("Hiking", "Languages");
+        List<String> interestList = Functions.get_interest_names(dbConnection);
         final ComboBox<String> interest = new ComboBox<String>("Interest", interestList);
         interest.setPlaceholder("Please select an interest");
         interest.setEmptySelectionAllowed(false);
         interest.setWidth(300f, Unit.PIXELS);
 
         // Create Club Selection
-        List<String> clubList = Arrays.asList("ACM", "American Sign Language", "Cinema Club");
+        List<String> clubList = Functions.get_club_names(dbConnection);
         final ComboBox<String> club = new ComboBox<String>("Host Club", clubList);
         club.setPlaceholder("Please select a club");
         club.setWidth(300f, Unit.PIXELS);
 
         // Create Location Selection
-        List<String> locList = Arrays.asList("KOM", "Your Mom's House", "Student Union", "Walker Library");
+        List<String> locList = Functions.get_location_names(dbConnection);
         final ComboBox<String> location = new ComboBox<String>("Select a location", locList);
         location.setPlaceholder("Please select a location");
         location.setWidth(300f, Unit.PIXELS);
@@ -68,8 +78,43 @@ public class CreateEventView extends VerticalLayout implements View {
 
         Button cont = new Button("Continue");
         cont.addClickListener(e -> {
-            navigator.navigateTo("main");
-            Notification.show("Sign Up Successful");
+            DataClasses.Event event = new DataClasses.Event();
+            event.event_name = eventName.getValue();
+ 
+            try {
+                //java.util.Date date = new java.util.Date()
+                //java.sql.Date sqlDate = new java.sql.Date(date.getTime())
+                java.util.Date date = formatter.parse(date2.getValue());
+                Timestamp ts = new Timestamp(date.getTime());
+                //java.sql.Timestamp sqlDate = new java.sql.Timestamp(date.getTime());
+                event.date_of_event = ts;
+            } catch (ParseException ex) {
+                Logger.getLogger(CreateEventView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+            event.duration = duration.getValue();
+            event.interest_name = interest.getValue();
+            event.club_name = club.getValue();
+            event.location_name = location.getValue();
+            event.event_desc = description.getValue();
+            
+            try {
+                String pass = Functions.pushEventtoDatabase(event, dbConnection);
+                
+                if(pass.equals("Failure"))
+                {
+                    Notification.show("Invalid entries for Event Creation");
+                    navigator.navigateTo("CreateEvent");
+                }
+                else
+                {
+                   navigator.navigateTo("main");
+                   Notification.show("Event Creation Successful"); 
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(CreateEventView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         });
 
         Button cancel = new Button("Cancel");
