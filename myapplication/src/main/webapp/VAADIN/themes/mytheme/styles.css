@@ -15238,7 +15238,14 @@ div.v-layout.v-horizontal.v-widget {
 	opacity: 100%;
 }
 
-.mytheme .v-widget {
+.mytheme v-label {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: white;
+	opacity: 100%;
+}
+
+.mytheme .v-widget.v-label-undef-w .v-widget {
 	opacity: 100%;
 }
 

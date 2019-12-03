@@ -12,20 +12,27 @@ import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 @Theme("mytheme")
 public class HomeView extends AbsoluteLayout implements View {
 
-    public HomeView(Navigator navigator){
+    public HomeView(Navigator navigator) throws SQLException {
+
+        Connection dbConnection = MySqlCon.connect();
 
         /* ----- Title Bar ----- */
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("10%");
+        titleBar.setHeight("125px");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 
-        Label logo = new Label("<h2>MTConnect</h2>");
-        logo.setContentMode(ContentMode.HTML);
+        Label logo = new Label("MTConnect");
         titleBar.addComponent(logo);
         titleBar.setExpandRatio(logo, 1.0f);
 
@@ -72,46 +79,44 @@ public class HomeView extends AbsoluteLayout implements View {
         /* ----- GRID LAYOUT -----*/
         GridLayout events = new GridLayout(4,1);
         events.setWidth("100%");
-        addComponent(events, "top: 50%");
+        addComponent(events, "top: 50%; left: 20%; right: 20%");
+        ArrayList<DataClasses.Event> eventList = Functions.pullEventArray(dbConnection);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+        for(int x = 0; x < 5; x++) {
+            HorizontalLayout eventLine = new HorizontalLayout();
+            Label title = new Label(eventList.get(x).getEvent_name());
+            //Label date = new Label(dateFormat.format(eventList.get(x).getDate_of_event()));
+            eventLine.addComponents(title);
+            eventLine.addLayoutClickListener(event -> {
+                Window description = new Window("Event Description");
+                VerticalLayout windowContent = new VerticalLayout();
+                description.setContent(windowContent);
+                description.setModal(true);
+                description.center();
+                description.setWidth("500px");
+                description.setHeight("500px");
+
+                Label text = new Label("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+                        "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
+                        "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure " +
+                        "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
+                        "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
+                        "laborum.</p>");
+                text.setContentMode(ContentMode.HTML);
+                VerticalLayout textBox = new VerticalLayout();
+                text.setWidth("390px");
+                windowContent.addComponent(text);
+
+                UI.getCurrent().addWindow(description);
+            });
+            events.addComponents(eventLine);
+        }
+
 
         // Packaging up one poster
-        VerticalLayout eventpackage1 = new VerticalLayout();
-        Image poster = new Image("",
-                new ExternalResource("https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"));
-        poster.setWidth("200px");
-        poster.setHeight("266px");
-        Label title = new Label("Jazz Concert");
-        eventpackage1.addComponents(poster, title);
-        eventpackage1.addLayoutClickListener(event -> {
-            Window description = new Window("Event Description");
-            VerticalLayout windowContent = new VerticalLayout();
-            description.setContent(windowContent);
-            description.setModal(true);
-            description.center();
-            description.setWidth("500px");
-            description.setHeight("500px");
 
-            Label text = new Label("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
-                    "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
-                    "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure " +
-                    "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
-                    "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
-                    "laborum.</p>");
-            text.setContentMode(ContentMode.HTML);
-            VerticalLayout textBox = new VerticalLayout();
-            text.setWidth("390px");
-            windowContent.addComponent(text);
-
-
-            UI.getCurrent().addWindow(description);
-        });
         VerticalLayout eventpackage2 = new VerticalLayout();
-        poster = new Image("",
-                new ExternalResource("https://about.canva.com/wp-content/uploads/sites/3/2015/01/volleyball_poster.png"));
-        poster.setWidth("200px");
-        poster.setHeight("266px");
-        title = new Label("Beach Volleyball");
-        eventpackage2.addComponents(poster, title);
         eventpackage2.addLayoutClickListener(event -> {
             Window description = new Window("Event Description");
             VerticalLayout windowContent = new VerticalLayout();
@@ -134,7 +139,7 @@ public class HomeView extends AbsoluteLayout implements View {
 
             UI.getCurrent().addWindow(description);
         });
-        events.addComponents(eventpackage1, eventpackage2);
+
 
 
 

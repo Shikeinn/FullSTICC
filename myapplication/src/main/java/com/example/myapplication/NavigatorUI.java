@@ -38,7 +38,11 @@ public class NavigatorUI extends UI {
         // Create and register the views
         LoginView login = new LoginView(navigator);
         navigator.addView("", login);
-        navigator.addView(MAINVIEW, new HomeView(navigator));
+        try {
+            navigator.addView(MAINVIEW, new HomeView(navigator));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         navigator.addView("MapView", new MapView(navigator));
         try {
             navigator.addView("SignUp", new SignUpView(navigator));
