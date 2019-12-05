@@ -85,18 +85,7 @@ public class CreateEventView extends VerticalLayout implements View {
         cont.addClickListener(e -> {
             DataClasses.Event event = new DataClasses.Event();
             event.event_name = eventName.getValue();
- 
-            try {
-                //java.util.Date date = new java.util.Date()
-                //java.sql.Date sqlDate = new java.sql.Date(date.getTime())
-                java.util.Date date = formatter.parse(date2.getValue());
-                Timestamp ts = new Timestamp(date.getTime());
-                //java.sql.Timestamp sqlDate = new java.sql.Timestamp(date.getTime());
-                event.date_of_event = ts;
-            } catch (ParseException ex) {
-                Logger.getLogger(CreateEventView.class.getName()).log(Level.SEVERE, null, ex);
-            }
- 
+            event.date_of_event = date2.getValue();
             event.duration = duration.getValue();
             event.interest_name = interest.getValue();
             event.club_name = club.getValue();

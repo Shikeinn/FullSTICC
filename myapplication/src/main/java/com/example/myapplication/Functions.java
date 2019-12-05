@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Functions {
 	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
@@ -62,7 +61,7 @@ public class Functions {
 		stmt.setString(1, x.event_name);
 		stmt.setString(2, x.club_name);
 		stmt.setString(3, x.interest_name);
-		stmt.setDate(4, (java.sql.Date) x.date_of_event);
+		stmt.setString(4, x.date_of_event);
 		stmt.setString(5, x.duration);
 		stmt.setString(6, x.location_name);
 		stmt.setString(7, x.event_desc);
@@ -140,7 +139,7 @@ public class Functions {
 				results.getString("event_name"),
 				results.getString("club_name"),
 				results.getString("interest_name"),
-				results.getDate("date_of_event"), 
+				results.getString("date_of_event"), 
 				results.getString("duration"), 
 				results.getString("location_name"), 
 				results.getString("event_desc"));				
@@ -234,7 +233,7 @@ public class Functions {
 		String event_name_db = "";
 		String club_name = "";
 		String interest_name = "";
-		java.sql.Date date_of_event;
+		String date_of_event;
 		String duration = "";
 		String location_name = "";
 		String event_desc = "";
@@ -246,7 +245,7 @@ public class Functions {
 			event_name_db = results.getString("event_name");
 			club_name = null; //results.getString("club_name");
 			interest_name = null; //results.getString("interest_name");
-			date_of_event = results.getDate("date_of_event");
+			date_of_event = results.getString("date_of_event");
 			duration = null; //results.getString("duration");
 			location_name = null; //results.getString("location_name");
 			event_desc = null; //results.getString("event_desc");
@@ -328,7 +327,7 @@ public class Functions {
 		String event_name_db = "";
 		String club_name = "";
 		String interest_name = "";
-		Date date_of_event;
+		String date_of_event;
 		String duration = "";
 		String location_name = "";
 		String event_desc = "";
@@ -340,7 +339,7 @@ public class Functions {
 			event_name_db = results.getString("event_name");
 			club_name = results.getString("club_name");
 			interest_name = results.getString("interest_name");
-			date_of_event = results.getDate("date_of_event");
+			date_of_event = results.getString("date_of_event");
 			duration = results.getString("duration");
 			location_name = results.getString("location_name");
 			event_desc = results.getString("event_desc");

@@ -17,7 +17,7 @@ public class DataClasses
 		String event_name; 
 		String club_name; 
 		String interest_name;
-		Date date_of_event;
+		String date_of_event;
 		String duration;
 		String location_name;
 		String event_desc;
@@ -35,7 +35,7 @@ public class DataClasses
 		}
 		
 		//constructor given all values in string format
-		public Event(String event_name, String club_name, String interest_name, Date date_of_event, String duration,
+		public Event(String event_name, String club_name, String interest_name, String date_of_event, String duration,
 				String location_name, String event_desc) {
 			super();
 			this.event_name = event_name;
@@ -66,10 +66,10 @@ public class DataClasses
 		public void setinterest_name(String interest_name) {
 			this.interest_name = interest_name;
 		}
-		public Date getDate_of_event() {
+		public String getDate_of_event() {
 			return date_of_event;
 		}
-		public void setDate_of_event(Date date_of_event) {
+		public void setDate_of_event(String date_of_event) {
 			this.date_of_event = date_of_event;
 		}
 		public String getDuration() {
