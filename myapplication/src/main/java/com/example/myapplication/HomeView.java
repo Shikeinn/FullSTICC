@@ -26,16 +26,7 @@ public class HomeView extends AbsoluteLayout implements View {
 
         Connection dbConnection = MySqlCon.connect();
 
-        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-        FileResource resource = new FileResource(new File(basepath + "/WEBINF/images/Hackers-Choice-Award72-1170x780.jpg"));
-        Image image = new Image("Image from file",resource);
-        image.setHeight("100%");
-        image.setWidth("100%");
-        HorizontalLayout imageLayout = new HorizontalLayout();
-        imageLayout.addComponent(image);
-        imageLayout.setWidth("100%");
-        imageLayout.setHeight("100%");
-        addComponent(imageLayout, "right: 25%; left: 25%; bottom: 50%");
+
 
         /* ----- Title Bar ----- */
         HorizontalLayout titleBar = new HorizontalLayout();
@@ -91,12 +82,12 @@ public class HomeView extends AbsoluteLayout implements View {
         upcomingLabel.setStyleName("upcoming");
 
         upcoming.addComponent(upcomingLabel);
-        addComponent(upcoming,"top: 52.5%; left: 15%");
+        addComponent(upcoming,"top: 50%; left: 39%");
 
         /* ----- GRID LAYOUT -----*/
         GridLayout events = new GridLayout(1,10);
         events.setWidth("100%");
-        addComponent(events, "top: 58.5%; left: 20%; right: 20%");
+        addComponent(events, "top: 58.5%; left: 26.5%; right: 10%");
         ArrayList<DataClasses.Event> eventList = Functions.pullDaysEvents("Kirksey Old Main", dbConnection);
 
         for(int x = 0; x < eventList.size(); x++) {
