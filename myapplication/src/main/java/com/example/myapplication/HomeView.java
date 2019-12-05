@@ -97,14 +97,13 @@ public class HomeView extends AbsoluteLayout implements View {
         GridLayout events = new GridLayout(1,10);
         events.setWidth("100%");
         addComponent(events, "top: 58.5%; left: 20%; right: 20%");
-        ArrayList<DataClasses.Event> eventList = Functions.pullDaysEvents("Kirksey Old Main" ,dbConnection);
+        ArrayList<DataClasses.Event> eventList = Functions.pullEventArray(dbConnection);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-        for(int x = 0; x < 6; x++) {
+        for(int x = 0; x < eventList.size(); x++) {
             HorizontalLayout eventLine = new HorizontalLayout();
             Label title = new Label(eventList.get(x).getEvent_name());
             title.setStyleName("title");
-            Label date = new Label(eventList.get(x).getDate_of_event() );
+            Label date = new Label(eventList.get(x).getDate_of_event());
             date.setStyleName("date");
             //Label date = new Label(dateFormat.format(eventList.get(x).getDate_of_event()));
             eventLine.addComponents(title);

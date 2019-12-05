@@ -243,12 +243,12 @@ public class Functions {
 		//grab all the data and add it to an event array list
 		while(results.next()) {
 			event_name_db = results.getString("event_name");
-			club_name = null; //results.getString("club_name");
-			interest_name = null; //results.getString("interest_name");
+			club_name = results.getString("club_host_sk");
+			interest_name = results.getString("event_type_sk");
 			date_of_event = results.getString("date_of_event");
-			duration = null; //results.getString("duration");
-			location_name = null; //results.getString("location_name");
-			event_desc = null; //results.getString("event_desc");
+			duration = results.getString("duration");
+			location_name = results.getString("location_sk");
+			event_desc = results.getString("event_desc");
 			//adds the event to the event array list
 			eventArrayList.add(new DataClasses.Event(event_name_db, club_name, interest_name,
 			          date_of_event, duration, location_name, event_desc));
@@ -337,7 +337,7 @@ public class Functions {
 		//grab all the data and add it to an event array list
 		while(results.next() ) {
 			event_name_db = results.getString("event_name");
-			club_name = results.getString("club_name");
+			club_name = results.getString("club_host_sk");
 			interest_name = results.getString("interest_name");
 			date_of_event = results.getString("date_of_event");
 			duration = results.getString("duration");
