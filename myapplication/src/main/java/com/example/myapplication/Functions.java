@@ -138,7 +138,7 @@ public class Functions {
 		{	
 			DataClasses.Event pulledEvent = new DataClasses.Event(
 				results.getString("event_name"),
-				results.getString("club_name"), 
+				results.getString("club_name"),
 				results.getString("interest_name"),
 				results.getDate("date_of_event"), 
 				results.getString("duration"), 
@@ -244,12 +244,12 @@ public class Functions {
 		//grab all the data and add it to an event array list
 		while(results.next()) {
 			event_name_db = results.getString("event_name");
-			club_name = results.getString("club_name");
-			interest_name = results.getString("interest_name");
+			club_name = null; //results.getString("club_name");
+			interest_name = null; //results.getString("interest_name");
 			date_of_event = results.getDate("date_of_event");
-			duration = results.getString("duration");
-			location_name = results.getString("location_name");
-			event_desc = results.getString("event_desc");
+			duration = null; //results.getString("duration");
+			location_name = null; //results.getString("location_name");
+			event_desc = null; //results.getString("event_desc");
 			//adds the event to the event array list
 			eventArrayList.add(new DataClasses.Event(event_name_db, club_name, interest_name,
 			          date_of_event, duration, location_name, event_desc));
@@ -469,13 +469,12 @@ public class Functions {
 		*/
 		
 		//print array list of Events example
-		/*
-		ArrayList<DataClasses.Event> eventList = pullEventArray(dbConnection);
+
+	/*	ArrayList<DataClasses.Event> eventList = pullEventArray(dbConnection);
 		for (int x=0; x<eventList.size(); x++) {
 			//System.out.println(x);
 			(eventList.get(x)).printEvent();
-		}
-		*/
+		}*/
 		
 		
 		//print array list of Users example

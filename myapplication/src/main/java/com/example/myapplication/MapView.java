@@ -35,7 +35,7 @@ public class MapView extends AbsoluteLayout implements View {
 
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
-        titleBar.setHeight("10%");
+        titleBar.setHeight("125px");
         titleBar.setMargin(new MarginInfo(true, true, false, true));
         addComponent(titleBar);
 
@@ -46,7 +46,6 @@ public class MapView extends AbsoluteLayout implements View {
         titleBar.setExpandRatio(logo, 1.0f);
 
         HorizontalLayout navbar = new HorizontalLayout();
-        titleBar.setHeight("10%");
         Button homeBtn = new Button("Home");
         Button mapBtn = new Button("Map");
         homeBtn.setStyleName(ValoTheme.BUTTON_BORDERLESS);
