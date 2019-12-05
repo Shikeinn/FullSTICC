@@ -16,7 +16,7 @@ public class Functions {
 	public static String pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
 		
                 if( (x.name_f == null) || (x.pw == null) || ( (x.name_f).equals("") ) || ( (x.pw).equals("") )
-                        || ( (x.m_number).equals("") ) || ( (x.m_number).equals("") )   ){
+                        || ( (x.m_number) == null ) || ( (x.m_number).equals("") )   ){
                     return ("Failure");
                 }
 		Statement st = dbConnection.createStatement();
@@ -50,7 +50,7 @@ public class Functions {
 		
             
                 if( (x.event_name == null) || (x.club_name == null) || ( (x.event_name).equals("") ) || ( (x.club_name).equals("") )
-                        || ( (x.location_name).equals("") ) || ( (x.location_name).equals("") )   ){
+                        || ( (x.location_name) == null ) || ( (x.location_name).equals("") )   ){
                     return ("Failure");
                 }            
             
