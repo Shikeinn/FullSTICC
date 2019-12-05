@@ -97,7 +97,7 @@ public class HomeView extends AbsoluteLayout implements View {
         GridLayout events = new GridLayout(1,10);
         events.setWidth("100%");
         addComponent(events, "top: 58.5%; left: 20%; right: 20%");
-        ArrayList<DataClasses.Event> eventList = Functions.pullEventArray(dbConnection);
+        ArrayList<DataClasses.Event> eventList = Functions.pullDaysEvents("Kirksey Old Main", dbConnection);
 
         for(int x = 0; x < eventList.size(); x++) {
             HorizontalLayout eventLine = new HorizontalLayout();

@@ -322,7 +322,7 @@ public class Functions {
 		st.executeQuery("use mtconnect");
 		String query = "{Call pull_10_events(?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
-		stmt.setInt(location, 1);
+		stmt.setString(1, location);
 
 		String event_name_db = "";
 		String club_name = "";
@@ -337,15 +337,17 @@ public class Functions {
 		//grab all the data and add it to an event array list
 		while(results.next() ) {
 			event_name_db = results.getString("event_name");
-			club_name = results.getString("club_host_sk");
+			club_name = results.getString("club_name");
 			interest_name = results.getString("interest_name");
 			date_of_event = results.getString("date_of_event");
+                        System.out.println(date_of_event);
 			duration = results.getString("duration");
 			location_name = results.getString("location_name");
 			event_desc = results.getString("event_desc");
 			//only add if it matches the currentDate
 			eventArrayList.add(new DataClasses.Event(event_name_db, club_name, interest_name,
 			          date_of_event, duration, location_name, event_desc));
+                        
 		}
 		
 		return eventArrayList; //returns the event
