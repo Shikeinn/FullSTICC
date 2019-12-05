@@ -33,7 +33,7 @@ public class CreateEventView extends VerticalLayout implements View {
         final VerticalLayout layout = new VerticalLayout();
 
         Connection dbConnection = MySqlCon.connect();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
         // Title Bar
         HorizontalLayout titleBar = new HorizontalLayout();
         titleBar.setWidth("100%");
@@ -86,6 +86,7 @@ public class CreateEventView extends VerticalLayout implements View {
             DataClasses.Event event = new DataClasses.Event();
             event.event_name = eventName.getValue();
             event.date_of_event = date2.getValue();
+            //System.out.printf(" %s CreateEventView", event.date_of_event );
             event.duration = duration.getValue();
             event.interest_name = interest.getValue();
             event.club_name = club.getValue();

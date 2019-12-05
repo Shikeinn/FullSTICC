@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Functions {
-	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 	
 	//push a User to the database, given User object and Connection
 	public static String pushUsertoDatabase(DataClasses.User x, Connection dbConnection) throws SQLException {
@@ -58,6 +57,7 @@ public class Functions {
 		
 		String query = "{call create_event(?, ?, ?, ?, ?, ?, ?)}";
 		java.sql.CallableStatement stmt = dbConnection.prepareCall(query);
+                //System.out.printf(" %s Functions.java PrePush\n", x.date_of_event );
 		stmt.setString(1, x.event_name);
 		stmt.setString(2, x.club_name);
 		stmt.setString(3, x.interest_name);
