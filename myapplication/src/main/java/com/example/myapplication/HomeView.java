@@ -35,7 +35,7 @@ public class HomeView extends AbsoluteLayout implements View {
         imageLayout.addComponent(image);
         imageLayout.setWidth("100%");
         imageLayout.setHeight("100%");
-        addComponent(imageLayout, "right: 10%; left: 10%; bottom: 50%");
+        addComponent(imageLayout, "right: 25%; left: 25%; bottom: 50%");
 
         /* ----- Title Bar ----- */
         HorizontalLayout titleBar = new HorizontalLayout();
@@ -81,24 +81,31 @@ public class HomeView extends AbsoluteLayout implements View {
         profile.addItem("Create an Event", null, createEvent);
         profile.addItem("Logout", null, logOut);
 
-
         ComboBox searchBar = new ComboBox();
         searchBar.setStyleName("searchbox");
-        searchBar.setWidth("75%");
-        addComponent(searchBar, "top: 30%; left: 20%");
+        searchBar.setWidth("50%");
+        addComponent(searchBar, "top: 30%; left: 32.5%");
 
+        HorizontalLayout upcoming = new HorizontalLayout();
+        Label upcomingLabel = new Label("Upcoming Events");
+        upcomingLabel.setStyleName("upcoming");
+
+        upcoming.addComponent(upcomingLabel);
+        addComponent(upcoming,"top: 52.5%; left: 15%");
 
         /* ----- GRID LAYOUT -----*/
         GridLayout events = new GridLayout(1,10);
         events.setWidth("100%");
-        addComponent(events, "top: 55%; left: 20%; right: 20%");
+        addComponent(events, "top: 58.5%; left: 20%; right: 20%");
         ArrayList<DataClasses.Event> eventList = Functions.pullEventArray(dbConnection);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-        for(int x = 0; x < 5; x++) {
+        for(int x = 0; x < 6; x++) {
             HorizontalLayout eventLine = new HorizontalLayout();
             Label title = new Label(eventList.get(x).getEvent_name());
+            title.setStyleName("title");
             Label date = new Label("Date");
+            date.setStyleName("date");
             //Label date = new Label(dateFormat.format(eventList.get(x).getDate_of_event()));
             eventLine.addComponents(title);
             eventLine.addComponents(date);
@@ -120,6 +127,7 @@ public class HomeView extends AbsoluteLayout implements View {
                         "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
                         "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
                         "laborum.</p>");
+
                 text.setContentMode(ContentMode.HTML);
                 VerticalLayout textBox = new VerticalLayout();
                 text.setWidth("390px");

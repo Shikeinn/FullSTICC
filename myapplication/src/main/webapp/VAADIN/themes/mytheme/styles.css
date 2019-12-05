@@ -15259,3 +15259,27 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-absolutelayout .v-layout .v-widget .v-has-width .v-has-height {
 	overflow: auto;
 }
+
+.mytheme .v-label-upcoming {
+	font-size: 30px;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: black;
+	opacity: 100%;
+}
+
+.mytheme .v-label-title {
+	font-size: 24px;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: black;
+	opacity: 100%;
+}
+
+.mytheme .v-label-date {
+	font-size: 24px;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: bold;
+	color: black;
+	opacity: 100%;
+}
